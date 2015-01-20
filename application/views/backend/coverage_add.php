@@ -86,7 +86,10 @@
                                 </div>
                                 <div class="span9">
                                     <label for="inputEmail">Coordinates</label>
-                                    <input type="text" name="coordinates" id="mustHaveId" class="wysihtml5 span12"/>
+									<textarea id="mustHaveId" name="coordinates" class="wysihtml5 span12" rows="5">
+									
+									 </textarea>
+                                   
                                 </div>
                             </div>
 
