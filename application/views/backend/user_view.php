@@ -8,16 +8,21 @@
                 <div class="separator"></div>
 
                 <div class="heading-buttons">
-                    <h3 class="glyphicons shopping_cart"><i></i> Merchants</h3>
+                    <h3 class="glyphicons shopping_cart"><i></i> User</h3>
 
-                   
+                   <div class="buttons pull-right">
+                        <a href="<?php echo base_url(); ?>admin/user_information"
+                           class="btn btn-primary btn-icon glyphicons circle_plus" style="color:white"><i></i> Add
+                            User</a>
+
+                    </div>
                 </div>
 
 
                 <div class="relativeWrap">
                     <div class="widget widget-gray widget-gray-white">
                         <div class="widget-head">
-                            <h4 class="heading">View Merchants</h4>
+                            <h4 class="heading">View User</h4>
                         </div>
                         <div class="widget-body">
                             <table cellpadding="0" cellspacing="0" border="0"
@@ -31,22 +36,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach ($merchant as $row): ?>
+                                <?php foreach ($users as $row): ?>
                                     <tr class="gradeX">
 
-                                        <td><?php echo $row['username']; ?></td>
+                                        <td><?php echo $row['username'];?> </td>
                                         <td class="center"><?php echo $row['password']; ?></td>
                                         <td class="center">
                                            <?php if($row['status'] == 0) : ?>
-                                            <a href="<?php echo base_url() . 'admin/approve_merchant/' . $row["id"] ?>"
+                                            <a href="<?php echo base_url() . 'admin/approve_user/' . $row["id"] ?>"
                                                class="btn-action glyphicons check btn-success"><i></i></a>
 											   <?php endif; ?>
 											   
 											    <?php if($row['status'] == 1) : ?>
-                                            <a href="<?php echo base_url() . 'admin/disapprove_merchant/' . $row["id"] ?>"
+                                            <a href="<?php echo base_url() . 'admin/disapprove_user/' . $row["id"] ?>"
                                                class="btn-action glyphicons remove_2 btn-danger"><i></i></a>
 											   <?php endif; ?>
-											<a href="<?php echo base_url() . 'admin/delete_mer/' . $row["id"] ?>"
+											 <a href="<?php echo base_url() . 'admin/delete_user/' . $row["id"] ?>"
                                                class="btn-action glyphicons delete btn-danger"><i></i></a>
                                         </td>
                                     </tr>

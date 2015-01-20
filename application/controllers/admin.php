@@ -331,6 +331,124 @@ class Admin extends CI_Controller
         redirect(base_url() . 'admin/view_merchants/', 'refresh');
     }
 	
+	public function delete_mer($param2 = '')
+    {
+	
+	//echo $param2;
+		$this->db->set('status', 0);
+		$this->db->where('id', $param2);
+		$this->db->delete('users');
+		  $query = $this->db->get_where(
+			'users', array(
+			'id' => $param2
+		))->result_array();
+        $data = array();
+		$this->db->where('id', $query[0]['merchant_id']);
+		$this->db->delete('merchants');
+        redirect(base_url() . 'admin/user_view/', 'refresh');
+    }
+	
+	
+	
+	public function user_view()
+    {
+        $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] != NULL) {
+
+            $data = array();
+            $data['users'] = $this->db->get('users')->result_array();
+            $data['maincontent'] = $this->load->view('backend/user_view', $data, TRUE);
+            $this->load->view('backend/home', $data);
+        } else {
+            redirect('notificamos', 'refresh');
+        }
+    }
+	function user_information($param1 = '', $param2 = '')
+    {
+        $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
+        $data = array();
+        if ($param1 == 'create') {
+       //echo 1;
+	   $query = $this->db->get_where(
+			'users', array(
+			'username' => $this->input->post('username')
+		))->result_array();
+		
+        if(count($query) <=0){
+       
+       
+		$inputelement_two = array();
+		 $inputelement_two['username'] = $this->input->post('username');
+		
+        $inputelement_two['password'] = md5($this->input->post('password'));
+		$inputelement_two['user_type_id'] = $this->input->post('user_type_id');
+		$inputelement_two['status'] = 1;
+		$inputelement_two['created_at'] = date("Y-m-d h:i:s", time());
+		$this->db->insert('users',$inputelement_two);
+		 $data['status'] = 'Success';
+            $this->session->set_flashdata('add_status', "Success");
+       // print_r($inputelement_two);
+		//exit;
+		}
+		}
+       
+        $data['maincontent'] = $this->load->view('backend/users_add', $data, TRUE);
+        $this->load->view('backend/home', $data);
+   
+	}
+	
+	 public function approve_user($param2 = '')
+    {
+	
+	//echo $param2;
+		$this->db->set('status', 1);
+		$this->db->where('id', $param2);
+		$this->db->update('users');
+		  $query = $this->db->get_where(
+			'users', array(
+			'id' => $param2
+		))->result_array();
+        $data = array();
+		$this->db->set('status', 1);
+		$this->db->where('id', $query[0]['merchant_id']);
+		$this->db->update('merchants');
+        redirect(base_url() . 'admin/user_view/', 'refresh');
+    }
+	
+	 public function disapprove_user($param2 = '')
+    {
+	
+	//echo $param2;
+		$this->db->set('status', 0);
+		$this->db->where('id', $param2);
+		$this->db->update('users');
+		  $query = $this->db->get_where(
+			'users', array(
+			'id' => $param2
+		))->result_array();
+        $data = array();
+		$this->db->set('status', 0);
+		$this->db->where('id', $query[0]['merchant_id']);
+		$this->db->update('merchants');
+        redirect(base_url() . 'admin/user_view/', 'refresh');
+    }
+	
+	 public function delete_user($param2 = '')
+    {
+	
+	//echo $param2;
+		$this->db->set('status', 0);
+		$this->db->where('id', $param2);
+		$this->db->delete('users');
+		  $query = $this->db->get_where(
+			'users', array(
+			'id' => $param2
+		))->result_array();
+       
+        redirect(base_url() . 'admin/user_view/', 'refresh');
+    }
 	
 	
 }

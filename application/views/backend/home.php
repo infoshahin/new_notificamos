@@ -60,7 +60,7 @@
                                     <li class="glyphicons sort"><a
                                             href="<?php echo base_url();?>admin/view_merchants"><i></i><span>Merchant</span></a></li>
                                     <li class="glyphicons picture"><a
-                                            href="gallery9ed2.html?lang=en"><i></i><span>User</span></a></li>
+                                            href="<?php echo base_url();?>admin/user_view"><i></i><span>User</span></a></li>
                                     <li class="glyphicons adress_book"><a href="bookings9ed2.html?lang=en"><i></i><span>Clients</span></a>
                                     </li>
                                     <li class="glyphicons charts"><a href="charts9ed2.html?lang=en"><i></i><span>Notification</span></a>
