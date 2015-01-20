@@ -324,9 +324,15 @@ p a,
 		<span class="line"></span>
 		<div class="box-1 registerbox">
 			<div class="inner">
-				<form action="http://demo.mosaicpro.biz/bootadmin/html/index.html?lang=en" method="post" class="fts">
-					<input type="text" name="" placeholder="Username" />
-					<input type="password" name="" placeholder="Password" />
+				<form action="<?php echo base_url();?>verifylogin/start_merchant" method="post" class="fts">
+					<input type="text" name="username" placeholder="Username" />
+					<input type="password" name="password" placeholder="Password" />
+					<input type="text" name="contact_person" placeholder="Contact Person" />
+					<input type="text" name="company_name" placeholder="Company Name" />
+					<input type="text" name="website" placeholder="Website" />
+					<input type="text" name="email" placeholder="Email" />
+					<input type="text" name="contact_number" placeholder="Contact Number" />
+					
 					<button type="submit" class="btn btn-icon btn-block glyphicons right edit btn-success">Register<i></i></button>
 				</form>
 			</div>

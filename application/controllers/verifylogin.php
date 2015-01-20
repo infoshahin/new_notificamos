@@ -65,6 +65,47 @@ class VerifyLogin extends CI_Controller
 //        session_destroy();
         redirect('notificamos', 'refresh');
     }
+	
+	 public function start_merchant()
+    {
+       //echo 1;
+	   $query = $this->db->get_where(
+			'users', array(
+			'username' => $this->input->post('username')
+		))->result_array();
+		
+        if(count($query) <=0){
+		
+        $inputelement = array();
+       
+        $inputelement['contact_person'] = $this->input->post('contact_person');
+        $inputelement['company_name'] = $this->input->post('company_name');
+        $inputelement['website'] = $this->input->post('website');
+        $inputelement['email'] = $this->input->post('email');
+	    $inputelement['contact_number'] = $this->input->post('contact_number');
+        $inputelement['status'] = 0;
+		$inputelement['created_at'] = date("Y-m-d h:i:s", time());
+		$this->db->insert('merchants',$inputelement);
+		$merchant_id = $this->db->insert_id();
+		
+		$inputelement_two = array();
+		 $inputelement_two['username'] = $this->input->post('username');
+		
+        $inputelement_two['password'] = md5($this->input->post('password'));
+		$inputelement_two['merchant_id'] = $merchant_id;
+		$inputelement_two['user_type_id'] = 4;
+		$inputelement_two['status'] = 0;
+		$inputelement_two['created_at'] = date("Y-m-d h:i:s", time());
+		$this->db->insert('users',$inputelement_two);
+		
+        
+       redirect('notificamos', 'refresh');
+		}
+		else{
+		//echo $this->input->post('username')." Username Already Exist!";
+		 redirect('notificamos', 'refresh');
+		}
+    }
 
 }
 

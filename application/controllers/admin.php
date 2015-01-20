@@ -275,6 +275,64 @@ class Admin extends CI_Controller
         redirect(base_url() . 'admin/coverage/', 'refresh');
     }
 	
+	
+	public function view_merchants($param2 = '')
+    {
+	
+	 $m_id = $this->db->get_where(
+			'user_type', array(
+			'title' => 'Merchant'
+		))->result_array();
+		//echo $m_id[0]['id'];
+		
+        $data = array();
+        $query = $this->db->get_where(
+			'users', array(
+			'user_type_id' => $m_id[0]['id']
+		))->result_array();
+		$data['merchant'] = $query;
+        $data['maincontent'] = $this->load->view('backend/view_merchants', $data, TRUE);
+        $this->load->view('backend/home', $data);
+    }
+	
+	 public function approve_merchant($param2 = '')
+    {
+	
+	//echo $param2;
+		$this->db->set('status', 1);
+		$this->db->where('id', $param2);
+		$this->db->update('users');
+		  $query = $this->db->get_where(
+			'users', array(
+			'id' => $param2
+		))->result_array();
+        $data = array();
+		$this->db->set('status', 1);
+		$this->db->where('id', $query[0]['merchant_id']);
+		$this->db->update('merchants');
+        redirect(base_url() . 'admin/view_merchants/', 'refresh');
+    }
+	
+	 public function disapprove_merchant($param2 = '')
+    {
+	
+	//echo $param2;
+		$this->db->set('status', 0);
+		$this->db->where('id', $param2);
+		$this->db->update('users');
+		  $query = $this->db->get_where(
+			'users', array(
+			'id' => $param2
+		))->result_array();
+        $data = array();
+		$this->db->set('status', 0);
+		$this->db->where('id', $query[0]['merchant_id']);
+		$this->db->update('merchants');
+        redirect(base_url() . 'admin/view_merchants/', 'refresh');
+    }
+	
+	
+	
 }
 
 ?>

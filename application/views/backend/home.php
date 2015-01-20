@@ -49,7 +49,7 @@
                                 <!----------------------Menu Section Start for super admin ----------------------->
                                 <ul>
                                     <li class="glyphicons home currentScroll active"><a
-                                            href="index9ed2.html?lang=en"><i></i><span>Dashboard</span></a></li>
+                                            href="<?php echo base_url();?>"><i></i><span>Dashboard</span></a></li>
                                     <li class="glyphicons coins"><a
                                             href="<?php echo base_url();?>admin/campaigns"><i></i><span>Campaigns</span></a>
                                     </li>
@@ -58,7 +58,7 @@
                                     <li class="glyphicons sort"><a href="<?php echo base_url();?>admin/coverage"><i></i><span>Coverage</span></a>
                                     </li>
                                     <li class="glyphicons sort"><a
-                                            href="pages9ed2.html?lang=en"><i></i><span>Merchant</span></a></li>
+                                            href="<?php echo base_url();?>admin/view_merchants"><i></i><span>Merchant</span></a></li>
                                     <li class="glyphicons picture"><a
                                             href="gallery9ed2.html?lang=en"><i></i><span>User</span></a></li>
                                     <li class="glyphicons adress_book"><a href="bookings9ed2.html?lang=en"><i></i><span>Clients</span></a>
