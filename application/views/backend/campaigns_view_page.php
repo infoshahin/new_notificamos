@@ -1,3 +1,5 @@
+<?php $admin_type = $this->session->userdata('logged_in');
+                              ?>
 <div class="span10 col main-right">
     <div class="rrow scroll-y" id="mainYScroller">
         <div class="inner topRight">
@@ -9,13 +11,17 @@
 
                 <div class="heading-buttons">
                     <h3 class="glyphicons shopping_cart"><i></i> Campaigns</h3>
-
+ <?php 
+									  $admin_title = $this->crud_model->get_user_type($admin_type['user_type_id']);
+									 if($admin_title[0]['title'] == 'Merchant'):?>
                     <div class="buttons pull-right">
                         <a href="<?php echo base_url(); ?>admin/campaigns_information"
                            class="btn btn-primary btn-icon glyphicons circle_plus" style="color:white"><i></i> Add
                             Campaigns</a>
 
                     </div>
+					
+					<?php endif; ?>
                 </div>
 
 

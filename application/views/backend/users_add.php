@@ -1,3 +1,5 @@
+<?php $admin_type = $this->session->userdata('logged_in');
+                              ?>
 <div class="span10 col main-right">
     <div class="rrow scroll-y" id="mainYScroller">
         <div class="inner topRight">
@@ -71,19 +73,48 @@
                             <hr class="separator bottom"/>
                             <div class="row-fluid">
                                 <div class="span3">
-                                    <strong>Admin Type</strong>
+                                    <strong>Admin Type <?php $admin_type['user_type_id'] ?></strong>
 
                                     <p class="muted"></p>
                                 </div>
                                 <div class="span9">
                                     <label for="inputEmail">Admin Type</label>
+									 <?php 
+									  $admin_title = $this->crud_model->get_user_type($admin_type['user_type_id']);
+									 if($admin_title[0]['title'] == 'Super Admin'):?>
                                      <select name="user_type_id">
-									 <?php $query = $this->db->get('user_type')->result_array(); ?>
-                                        <?php foreach ($query as $row): ?>
+									<?php
+									$query = $this->db->get_where('user_type',array('id >='=> $admin_type['user_type_id']),3)->result_array(); 
+                                        foreach ($query as $row): ?>
                                             <option
                                                 value="<?php echo $row['id'] ?>"> <?php echo $row['title']; ?> </option>
                                         <?php endforeach; ?>
                                     </select>
+									<?php endif;?>
+									
+									<?php if($admin_title[0]['title'] == 'Admin'):?>
+                                     <select name="user_type_id">
+									<?php
+									$query = $this->db->get_where('user_type',array('id >'=> $admin_type['user_type_id']),2)->result_array(); 
+                                        foreach ($query as $row): ?>
+                                            <option
+                                                value="<?php echo $row['id'] ?>"> <?php echo $row['title']; ?> </option>
+                                        <?php endforeach; ?>
+                                    </select>
+									<?php endif;?>
+									
+									<?php if($admin_title[0]['title'] == 'Moderator'):?>
+                                     <select name="user_type_id">
+									<?php
+									$query = $this->db->get_where('user_type',array('id'=> $admin_type['user_type_id']),2)->result_array(); 
+                                        foreach ($query as $row): ?>
+                                            <option
+                                                value="<?php echo $row['id'] ?>"> <?php echo $row['title']; ?> </option>
+                                        <?php endforeach; ?>
+                                    </select>
+									<?php endif;?>
+									
+									
                                 </div>
                             </div>
 

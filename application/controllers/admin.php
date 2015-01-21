@@ -384,7 +384,7 @@ class Admin extends CI_Controller
 		
         $inputelement_two['password'] = md5($this->input->post('password'));
 		$inputelement_two['user_type_id'] = $this->input->post('user_type_id');
-		$inputelement_two['status'] = 1;
+		$inputelement_two['status'] = 0;
 		$inputelement_two['created_at'] = date("Y-m-d h:i:s", time());
 		$this->db->insert('users',$inputelement_two);
 		 $data['status'] = 'Success';
@@ -448,6 +448,19 @@ class Admin extends CI_Controller
 		))->result_array();
        
         redirect(base_url() . 'admin/user_view/', 'refresh');
+    }
+	
+	public function client_view()
+    {
+       $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] != NULL) {
+            $data = array();
+            $data['clients'] = $this->db->get('clients')->result_array();
+            $data['maincontent'] = $this->load->view('backend/client_view', $data, TRUE);
+            $this->load->view('backend/home', $data);
+        } else {
+            redirect('notificamos', 'refresh');
+        }
     }
 	
 	

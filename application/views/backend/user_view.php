@@ -1,3 +1,5 @@
+<?php $admin_type = $this->session->userdata('logged_in');
+                              ?>
 <div class="span10 col main-right">
     <div class="rrow scroll-y" id="mainYScroller">
         <div class="inner topRight">
@@ -42,6 +44,10 @@
                                         <td><?php echo $row['username'];?> </td>
                                         <td class="center"><?php echo $row['password']; ?></td>
                                         <td class="center">
+										 <?php 
+									  $admin_title = $this->crud_model->get_user_type($admin_type['user_type_id']);
+									 if($admin_title[0]['title'] == 'Moderator'):?>
+										
                                            <?php if($row['status'] == 0) : ?>
                                             <a href="<?php echo base_url() . 'admin/approve_user/' . $row["id"] ?>"
                                                class="btn-action glyphicons check btn-success"><i></i></a>
@@ -51,6 +57,8 @@
                                             <a href="<?php echo base_url() . 'admin/disapprove_user/' . $row["id"] ?>"
                                                class="btn-action glyphicons remove_2 btn-danger"><i></i></a>
 											   <?php endif; ?>
+								<?php endif;?>
+											   
 											 <a href="<?php echo base_url() . 'admin/delete_user/' . $row["id"] ?>"
                                                class="btn-action glyphicons delete btn-danger"><i></i></a>
                                         </td>

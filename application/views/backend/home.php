@@ -49,7 +49,7 @@
                                 <!----------------------Menu Section Start for super admin ----------------------->
                                 <ul>
                                     <li class="glyphicons home currentScroll active"><a
-                                            href="<?php echo base_url();?>"><i></i><span>Dashboard</span></a></li>
+                                            href="<?php echo base_url();?>admin/"><i></i><span>Dashboard</span></a></li>
                                     <li class="glyphicons coins"><a
                                             href="<?php echo base_url();?>admin/campaigns"><i></i><span>Campaigns</span></a>
                                     </li>
@@ -61,7 +61,7 @@
                                             href="<?php echo base_url();?>admin/view_merchants"><i></i><span>Merchant</span></a></li>
                                     <li class="glyphicons picture"><a
                                             href="<?php echo base_url();?>admin/user_view"><i></i><span>User</span></a></li>
-                                    <li class="glyphicons adress_book"><a href="bookings9ed2.html?lang=en"><i></i><span>Clients</span></a>
+                                    <li class="glyphicons adress_book"><a href="<?php echo base_url();?>admin/client_view"><i></i><span>Clients</span></a>
                                     </li>
                                     <li class="glyphicons charts"><a href="charts9ed2.html?lang=en"><i></i><span>Notification</span></a>
                                     </li>
@@ -76,8 +76,8 @@
                                 <!----------------------Menu Section Start for Merchant admin ----------------------->
                                 <ul>
                                     <li class="glyphicons home currentScroll active"><a
-                                            href="index9ed2.html?lang=en"><i></i><span>Dashboard</span></a></li>
-                                    <li class="glyphicons coins"><a href="finances9ed2.html?lang=en"><i></i><span>Campaigns</span></a>
+                                            href="<?php echo base_url();?>admin/"><i></i><span>Dashboard</span></a></li>
+                                    <li class="glyphicons coins"><a href="<?php echo base_url();?>admin/campaigns"><i></i><span>Campaigns</span></a>
                                     </li>
                                     <li class="glyphicons charts"><a href="charts9ed2.html?lang=en"><i></i><span>Notification</span></a>
                                     </li>
@@ -86,6 +86,23 @@
 
                                 </ul>
                                 <!----------------------Menu Section End for Merchant admin----------------------->
+                            <?php } ?>
+							
+							 <!----------------------Menu Section End for super admin----------------------->
+                            <?php 
+                            if ($admin_title[0]['title'] == 'Moderator') { ?>
+
+                                <!----------------------Menu Section Start for Moderator admin ----------------------->
+                                <ul>
+                                    <li class="glyphicons home currentScroll active"><a
+                                            href="<?php echo base_url();?>admin/"><i></i><span>Dashboard</span></a></li>
+                                    <li class="glyphicons sort"><a
+                                            href="<?php echo base_url();?>admin/view_merchants"><i></i><span>Merchant</span></a></li>
+                                    <li class="glyphicons picture"><a
+                                            href="<?php echo base_url();?>admin/user_view"><i></i><span>User</span></a></li>
+
+                                </ul>
+                                <!----------------------Menu Section End for Moderator admin----------------------->
                             <?php } ?>
 
 
