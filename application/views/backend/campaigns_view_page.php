@@ -47,8 +47,14 @@
                                 <?php foreach ($campaigns as $row): ?>
                                     <tr class="gradeX">
 
-                                        <td><?php echo $row['title']; ?></td>
-                                        <td><?php echo $row['short_description']; ?></td>
+                                        <td><?php
+											$this->load->helper('text');
+											$string = word_limiter($row['title'], 2);
+										echo $string; ?></td>
+                                        <td><?php
+											
+											$string = word_limiter($row['short_description'], 10);
+										echo $string; ?> </td>
                                         <td class="center"><?php $address = $this->crud_model->get_name_from_coverage_id($row['coverage_id']);
                                             echo $address[0]['title'];
 

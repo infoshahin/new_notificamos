@@ -20,6 +20,7 @@ class Admin extends CI_Controller
         if ($admin_id['id'] != NULL) {
 
             $data = array();
+			$data['page_name']='dashboard';
             $data['maincontent'] = $this->load->view('backend/home_body', $data, TRUE);
             $this->load->view('backend/home', $data);
         } else {
@@ -33,6 +34,7 @@ class Admin extends CI_Controller
         if ($admin_id['id'] != NULL) {
 
             $data = array();
+			$data['page_name']='campaigns';
             $data['campaigns'] = $this->db->get('campaigns')->result_array();
             $data['maincontent'] = $this->load->view('backend/campaigns_view_page', $data, TRUE);
             $this->load->view('backend/home', $data);
@@ -69,28 +71,40 @@ class Admin extends CI_Controller
             // echo '</pre>';
             // exit;
         }
+		$data['page_name']='campaigns';
         $data['maincontent'] = $this->load->view('backend/campaigns_add', $data, TRUE);
         $this->load->view('backend/home', $data);
     }
 
     public function edit_compaign($param2 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
         $data = array();
         $data['param2'] = $param2;
+		$data['page_name']='campaigns';
         $data['maincontent'] = $this->load->view('backend/campaigns_edit', $data, TRUE);
         $this->load->view('backend/home', $data);
     }
 
     public function view_compaign($param2 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
         $data = array();
         $data['param2'] = $param2;
+		$data['page_name']='campaigns';
         $data['maincontent'] = $this->load->view('backend/campaigns_view', $data, TRUE);
         $this->load->view('backend/home', $data);
     }
 
     public function update_compaign($param1 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
        //echo 1;
         $data = array();
         $this->load->library('file_processing');
@@ -115,12 +129,16 @@ class Admin extends CI_Controller
         $this->db->update('campaigns', $inputelement);
         $data['param2'] = $param1;
         $data['status'] = 'Success';
+		$data['page_name']='campaigns';
         $this->session->set_flashdata('add_status', "Success");
         redirect(base_url() . 'admin/campaigns/', 'refresh');
     }
 
     public function cmp_del($param1 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
         $this->db->where('id', $param1);
         $this->db->delete('campaigns');
         redirect(base_url() . 'admin/campaigns/', 'refresh');
@@ -128,9 +146,13 @@ class Admin extends CI_Controller
 
     public function cetagory()
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
         $admin_id = $this->session->userdata('logged_in');
         if ($admin_id['id'] != NULL) {
             $data = array();
+			$data['page_name']='Categories';
             $data['categories'] = $this->db->get('categories')->result_array();
             $data['maincontent'] = $this->load->view('backend/cetagory_view_page', $data, TRUE);
             $this->load->view('backend/home', $data);
@@ -160,20 +182,28 @@ class Admin extends CI_Controller
             // echo '</pre>';
             // exit;
         }
+		$data['page_name']='Categories';
         $data['maincontent'] = $this->load->view('backend/categories_add', $data, TRUE);
         $this->load->view('backend/home', $data);
     }
 
     public function edit_categories($param2 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
         $data = array();
         $data['param2'] = $param2;
+		$data['page_name']='Categories';
         $data['maincontent'] = $this->load->view('backend/categories_edit', $data, TRUE);
         $this->load->view('backend/home', $data);
     }
 
     public function update_categories($param1 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
        //echo 1;
         $data = array();
 
@@ -190,6 +220,9 @@ class Admin extends CI_Controller
 
     public function categories_del($param1 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
         $this->db->where('id', $param1);
         $this->db->delete('categories');
         redirect(base_url() . 'admin/cetagory/', 'refresh');
@@ -197,9 +230,13 @@ class Admin extends CI_Controller
 
     public function coverage()
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
        $admin_id = $this->session->userdata('logged_in');
         if ($admin_id['id'] != NULL) {
             $data = array();
+			$data['page_name']='coverage';
             $data['coverage'] = $this->db->get('coverage')->result_array();
             $data['maincontent'] = $this->load->view('backend/coverage_view_page', $data, TRUE);
             $this->load->view('backend/home', $data);
@@ -211,6 +248,9 @@ class Admin extends CI_Controller
 
     function coverage_information($param1 = '', $param2 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
         $admin_id = $this->session->userdata('logged_in');
         if ($admin_id['id'] == NULL)
             redirect('notificamos', 'refresh');
@@ -230,13 +270,18 @@ class Admin extends CI_Controller
             // echo '</pre>';
             // exit;
         }
+		$data['page_name']='coverage';
         $data['maincontent'] = $this->load->view('backend/coverage_add', $data, TRUE);
         $this->load->view('backend/home', $data);
     }
 
     public function view_coverage($param2 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
         $data = array();
+		$data['page_name']='coverage';
         $data['param2'] = $param2;
         $data['maincontent'] = $this->load->view('backend/view_coverage', $data, TRUE);
         $this->load->view('backend/home', $data);
@@ -244,7 +289,11 @@ class Admin extends CI_Controller
 
     public function edit_coverage($param2 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
         $data = array();
+		$data['page_name']='coverage';
         $data['param2'] = $param2;
         $data['maincontent'] = $this->load->view('backend/edit_coverage', $data, TRUE);
         $this->load->view('backend/home', $data);
@@ -252,6 +301,9 @@ class Admin extends CI_Controller
 
     public function update_coverage($param1 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
        //echo 1;
         $data = array();
         $inputelement = array();
@@ -270,6 +322,9 @@ class Admin extends CI_Controller
 //shahin
     public function coverage_del($param1 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
         $this->db->where('id', $param1);
         $this->db->delete('coverage');
         redirect(base_url() . 'admin/coverage/', 'refresh');
@@ -278,6 +333,9 @@ class Admin extends CI_Controller
 	
 	public function view_merchants($param2 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
 	
 	 $m_id = $this->db->get_where(
 			'user_type', array(
@@ -291,12 +349,16 @@ class Admin extends CI_Controller
 			'user_type_id' => $m_id[0]['id']
 		))->result_array();
 		$data['merchant'] = $query;
+		$data['page_name']='merchant';
         $data['maincontent'] = $this->load->view('backend/view_merchants', $data, TRUE);
         $this->load->view('backend/home', $data);
     }
 	
 	 public function approve_merchant($param2 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
 	
 	//echo $param2;
 		$this->db->set('status', 1);
@@ -315,6 +377,9 @@ class Admin extends CI_Controller
 	
 	 public function disapprove_merchant($param2 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
 	
 	//echo $param2;
 		$this->db->set('status', 0);
@@ -333,6 +398,9 @@ class Admin extends CI_Controller
 	
 	public function delete_mer($param2 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
 	
 	//echo $param2;
 		$this->db->set('status', 0);
@@ -352,10 +420,14 @@ class Admin extends CI_Controller
 	
 	public function user_view()
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
         $admin_id = $this->session->userdata('logged_in');
         if ($admin_id['id'] != NULL) {
 
             $data = array();
+			$data['page_name']='user';
             $data['users'] = $this->db->get('users')->result_array();
             $data['maincontent'] = $this->load->view('backend/user_view', $data, TRUE);
             $this->load->view('backend/home', $data);
@@ -365,6 +437,9 @@ class Admin extends CI_Controller
     }
 	function user_information($param1 = '', $param2 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
         $admin_id = $this->session->userdata('logged_in');
         if ($admin_id['id'] == NULL)
             redirect('notificamos', 'refresh');
@@ -393,7 +468,7 @@ class Admin extends CI_Controller
 		//exit;
 		}
 		}
-       
+       $data['page_name']='user';
         $data['maincontent'] = $this->load->view('backend/users_add', $data, TRUE);
         $this->load->view('backend/home', $data);
    
@@ -401,6 +476,9 @@ class Admin extends CI_Controller
 	
 	 public function approve_user($param2 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
 	
 	//echo $param2;
 		$this->db->set('status', 1);
@@ -419,6 +497,9 @@ class Admin extends CI_Controller
 	
 	 public function disapprove_user($param2 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
 	
 	//echo $param2;
 		$this->db->set('status', 0);
@@ -437,6 +518,9 @@ class Admin extends CI_Controller
 	
 	 public function delete_user($param2 = '')
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
 	
 	//echo $param2;
 		$this->db->set('status', 0);
@@ -452,9 +536,13 @@ class Admin extends CI_Controller
 	
 	public function client_view()
     {
+	 $admin_id = $this->session->userdata('logged_in');
+        if ($admin_id['id'] == NULL)
+            redirect('notificamos', 'refresh');
        $admin_id = $this->session->userdata('logged_in');
         if ($admin_id['id'] != NULL) {
             $data = array();
+			$data['page_name']='clients';
             $data['clients'] = $this->db->get('clients')->result_array();
             $data['maincontent'] = $this->load->view('backend/client_view', $data, TRUE);
             $this->load->view('backend/home', $data);

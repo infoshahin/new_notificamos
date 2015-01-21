@@ -48,24 +48,24 @@
                                 ?>
                                 <!----------------------Menu Section Start for super admin ----------------------->
                                 <ul>
-                                    <li class="glyphicons home currentScroll active"><a
+                                    <li class="glyphicons home currentScroll <?php if ($page_name == 'dashboard') echo 'active'; ?>"><a
                                             href="<?php echo base_url();?>admin/"><i></i><span>Dashboard</span></a></li>
-                                    <li class="glyphicons coins"><a
+                                    <li class="glyphicons coins <?php if ($page_name == 'campaigns') echo 'active'; ?>"><a
                                             href="<?php echo base_url();?>admin/campaigns"><i></i><span>Campaigns</span></a>
                                     </li>
-                                    <li class="glyphicons sort"><a href="<?php echo base_url();?>admin/cetagory"><i></i><span>Cetagory</span></a>
+                                    <li class="glyphicons sort <?php if ($page_name == 'Categories') echo 'active'; ?>"><a href="<?php echo base_url();?>admin/cetagory"><i></i><span>Categories</span></a>
                                     </li>
-                                    <li class="glyphicons sort"><a href="<?php echo base_url();?>admin/coverage"><i></i><span>Coverage</span></a>
+                                    <li class="glyphicons sort <?php if ($page_name == 'coverage') echo 'active'; ?>"><a href="<?php echo base_url();?>admin/coverage"><i></i><span>Coverage</span></a>
                                     </li>
-                                    <li class="glyphicons sort"><a
+                                    <li class="glyphicons sort <?php if ($page_name == 'merchant') echo 'active'; ?>"><a
                                             href="<?php echo base_url();?>admin/view_merchants"><i></i><span>Merchant</span></a></li>
-                                    <li class="glyphicons picture"><a
+                                    <li class="glyphicons picture <?php if ($page_name == 'user') echo 'active'; ?>"><a
                                             href="<?php echo base_url();?>admin/user_view"><i></i><span>User</span></a></li>
-                                    <li class="glyphicons adress_book"><a href="<?php echo base_url();?>admin/client_view"><i></i><span>Clients</span></a>
+                                    <li class="glyphicons adress_book <?php if ($page_name == 'clients') echo 'active'; ?>"><a href="<?php echo base_url();?>admin/client_view"><i></i><span>Clients</span></a>
                                     </li>
-                                    <li class="glyphicons charts"><a href="charts9ed2.html?lang=en"><i></i><span>Notification</span></a>
+                                    <li class="glyphicons charts"><a href="#"><i></i><span>Notification</span></a>
                                     </li>
-                                    <li class="glyphicons cogwheels"><a href="ui9ed2.html?lang=en"><i></i><span>Delivery Log</span></a>
+                                    <li class="glyphicons cogwheels"><a href="#"><i></i><span>Delivery Log</span></a>
                                     </li>
 
                                 </ul>
@@ -75,13 +75,13 @@
 
                                 <!----------------------Menu Section Start for Merchant admin ----------------------->
                                 <ul>
-                                    <li class="glyphicons home currentScroll active"><a
+                                    <li class="glyphicons home currentScroll <?php if ($page_name == 'dashboard') echo 'active'; ?>"><a
                                             href="<?php echo base_url();?>admin/"><i></i><span>Dashboard</span></a></li>
-                                    <li class="glyphicons coins"><a href="<?php echo base_url();?>admin/campaigns"><i></i><span>Campaigns</span></a>
+                                    <li class="glyphicons coins <?php if ($page_name == 'campaigns') echo 'active'; ?>"><a href="<?php echo base_url();?>admin/campaigns"><i></i><span>Campaigns</span></a>
                                     </li>
-                                    <li class="glyphicons charts"><a href="charts9ed2.html?lang=en"><i></i><span>Notification</span></a>
+                                    <li class="glyphicons charts <?php if ($page_name == 'notification') echo 'active'; ?>"><a href="#"><i></i><span>Notification</span></a>
                                     </li>
-                                    <li class="glyphicons cogwheels"><a href="ui9ed2.html?lang=en"><i></i><span>Delivery Log</span></a>
+                                    <li class="glyphicons cogwheels <?php if ($page_name == 'delivery_log') echo 'active'; ?>"><a href="#"><i></i><span>Delivery Log</span></a>
                                     </li>
 
                                 </ul>
@@ -94,11 +94,11 @@
 
                                 <!----------------------Menu Section Start for Moderator admin ----------------------->
                                 <ul>
-                                    <li class="glyphicons home currentScroll active"><a
+                                    <li class="glyphicons home currentScroll <?php if ($page_name == 'dashboard') echo 'active'; ?>"><a
                                             href="<?php echo base_url();?>admin/"><i></i><span>Dashboard</span></a></li>
-                                    <li class="glyphicons sort"><a
+                                    <li class="glyphicons sort <?php if ($page_name == 'merchant') echo 'active'; ?>"><a
                                             href="<?php echo base_url();?>admin/view_merchants"><i></i><span>Merchant</span></a></li>
-                                    <li class="glyphicons picture"><a
+                                    <li class="glyphicons picture <?php if ($page_name == 'user') echo 'active'; ?>"><a
                                             href="<?php echo base_url();?>admin/user_view"><i></i><span>User</span></a></li>
 
                                 </ul>

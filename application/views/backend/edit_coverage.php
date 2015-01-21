@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="span9">
                                     <label for="inputEmail"> Coordinate</label>
-									<textarea id="mustHaveId" name="coordinates" class="wysihtml5 span12" rows="5">
+									<textarea id="mustHaveId" name="coordinates" class="span12" rows="5">
 									<?php echo $edit_data[0]['coordinates'] ?>
 									 </textarea>
                                    
